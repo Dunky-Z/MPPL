@@ -1,2 +1,2 @@
 # MPPL
-Markdown to Pdf with Pandoc via Latex
+Markdown to Pdf with Pandoc via $\LaTeX{}$.
