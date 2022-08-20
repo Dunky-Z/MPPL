@@ -1,11 +1,6 @@
 % %%%%%%%%%%%%%%%%%
 %
-% This is the eppdev letax template, used to generate pdf
-% file from markdown
-%
-% Copyrigh jinlong.hao 2019, ALL right preserved!
-%
-% Licensed by Anti-996 License V1.0
+% This is the mppl letax template, used to generate pdf file from markdown
 %
 % %%
 
@@ -17,7 +12,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % 公司和组织
-\newcommand*{\company}{$if(company)$$company$$else$EPPDEV.CN$endif$}
+\newcommand*{\company}{$if(company)$$company$$else$MPPL$endif$}
 
 % 缩进
 \newcommand*{\udfparindent}{2em}
@@ -35,7 +30,7 @@
 \newcommand*{\headerleft}{$if(header-left)$$header-left$$else$$title$$endif$}
 
 % 页眉-右
-\newcommand*{\headerright}{$if(header-right)$$header-right$$else$企业机密，请勿外传$endif$}
+\newcommand*{\headerright}{$if(header-right)$$header-right$$else$企业机密-禁止外传$endif$}
 
 % 页脚-左
 \newcommand*{\footerleft}{$if(footer-left)$$footer-left$$else$\company$endif$}
@@ -140,7 +135,7 @@ $endif$
   citecolor=$if(citecolor)$$citecolor$$else$default-citecolor$endif$,
   urlcolor=$if(urlcolor)$$urlcolor$$else$default-urlcolor$endif$,
   breaklinks=true,
-  pdfcreator={latex via pandoc with eppdev-pandoc-template}}
+  pdfcreator={MPPL-Markdown to PDF with Pandoc via LaTeX}}
 \urlstyle{same} % disable monospaced font for URLs
 $if(strikeout)$
 \usepackage[normalem]{ulem}
@@ -182,7 +177,7 @@ $endif$
 % -------------------------------------------
 \usepackage{fancyhdr}
 
-\fancypagestyle{eppdev-header-footer}{
+\fancypagestyle{mppl-header-footer}{
   \fancyhead{}
   \fancyfoot{}
   \lhead[\headerright]{\headerleft}
@@ -194,7 +189,7 @@ $endif$
   \renewcommand{\headrulewidth}{0.4pt}
   \renewcommand{\footrulewidth}{0.4pt}
 }
-\pagestyle{eppdev-header-footer}
+\pagestyle{mppl-header-footer}
 
 
 % ----------------------------------------
@@ -222,7 +217,7 @@ $endif$
 \definecolor{listing-javadoc-comment}{HTML}{006CA9}
 
 % java 颜色
-\lstdefinestyle{eppdev-listing-style}{
+\lstdefinestyle{mppl-listing-style}{
   language         = java,
   numbers          = left,
   xleftmargin      = 2.7em,
@@ -265,7 +260,7 @@ $endif$
   {…}{{\ldots}}1 {≥}{{>=}}1 {≤}{{<=}}1 {„}{{\glqq}}1 {“}{{\grqq}}1
   {”}{{''}}1
 }
-\lstset{style=eppdev-listing-style}
+\lstset{style=mppl-listing-style}
 
 \lstdefinelanguage{XML}{
   morestring      = [b]",
@@ -420,23 +415,23 @@ $endif$
 
         \rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{1.5pt} % 粗横线
 
-        \rule{\textwidth}{0.4pt} % 细横线
+        \rule{\textwidth}{0.4pt}           % 细横线
 
-        \vspace{1.5\baselineskip} % 标题上方的空白
+        \vspace{1.5\baselineskip}          % 标题上方的空白
 
-	{\LARGE \textbf{$title$}} % 标题
+	{\LARGE \textbf{$title$}}          % 标题
 
 	\vspace{0.5\baselineskip}
 
-	{\Large \textbf{$version$}} % 版本号
+	{\Large \textbf{$version$}}        % 版本号
 
-        \vspace{0.75\baselineskip} % Whitespace below the title
+        \vspace{0.75\baselineskip}         % 标题下方的空白
 
         \rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3pt} % 细线
 
-        \rule{\textwidth}{1.6pt} % 粗线
+        \rule{\textwidth}{1.6pt}           % 粗线
 
-        \vspace{2\baselineskip} % 标题后的空行
+        \vspace{2\baselineskip}            % 标题后的空行
 
         %------------------------------------------------
         %       副标题
@@ -452,7 +447,7 @@ $endif$
         %------------------------------------------------
 
 
-        \vspace{0.5\baselineskip} % Whitespace before the editors
+        \vspace{0.5\baselineskip} % 作者前的空行
 
 	{\scshape\Large \textsf{$for(author)$$author$$sep$ \\ $endfor$}} % 作者
 
@@ -469,7 +464,7 @@ $endif$
 	\oldincludegraphics[width=50pt,center]{\thelogo}
 	$endif$
 
-        \vspace{0.5\baselineskip} % Whitespace under the publisher logo
+        \vspace{0.5\baselineskip} % logo下的空白
 
 	{\large \textbf{$if(company)$$company$$else$\company$endif$}} % 公司
 
