@@ -15,7 +15,10 @@
 \newcommand*{\company}{$if(company)$$company$$else$MPPL$endif$}
 
 % 缩进
-\newcommand*{\udfparindent}{2em}
+\newcommand*{\udfparindent}{0em}
+
+% 段落间距
+\newcommand*{\udfparskip}{0.5em}
 
 % 主要中文字体
 \newcommand*{\thecjkmainfont}{$if(CJKmainfont)$$CJKmainfont$$else$Microsoft YaHei$endif$}
@@ -83,6 +86,9 @@ $endif$
 % 1.2倍行距
 \setstretch{1.2}
 \usepackage{amssymb,amsmath}
+
+% 段落间距
+\setlength{\parskip}{\udfparskip}
 
 % 字体设置
 \usepackage{ifxetex,ifluatex}
