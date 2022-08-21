@@ -72,7 +72,7 @@ LaTex工具，在windows下建议安装miktex，Linux和MacOS下建议安装texl
 - 正文缩进，目前默认是`0em`
 -  主要中文字体和英文字体：目前都是微软雅黑
 -  页眉、页脚展示内容，目前是：
-   -  左页眉：title
+   -  左页眉：标题
    -  右页眉："企业机密-禁止外传"
    -  左页脚：company
    -  右页脚：页码
@@ -81,11 +81,31 @@ LaTex工具，在windows下建议安装miktex，Linux和MacOS下建议安装texl
 
 目前页面默认的字体是微软雅黑，对于非Windows系统，可能不存在该字体，则有以下两种解决方案：
 
-1. 手工安装微软雅黑字体（需要msyh,msyhbd两个文件）
-2. 修改为其他字体，如苹方、文泉驿等
+1. 微软雅黑属于商业字体，无法分享，可以自行下载安装，字体名为`Microsoft YaHei`
+1. 修改为已安装的其他字体
+    - 将文档最前面的字体配置改为
+        ```
+        CJKmainfont: 中文字体名称
+        mainfont: 英文字体名称
+        monofont: 代码字体字体名称
+        ```
+### 字体推荐
 
-若需要多个团队共同使用，建议采用方案一。
+- 中文字体：思源宋体
+- 英文字体：微软雅黑
+- 代码字体：JetBrainsMono
 
+> 因为大部分用户还是装有微软雅黑，为了方便开箱即用所以没有将默认字体设为这两款字体。
+
+1. 下载安装这两款字体[思源宋体](https://source.typekit.com/source-han-serif/cn/)，[JetBrains Mono](https://www.jetbrains.com/lp/mono/)。
+1. 将文档最前面的字体配置改为
+    ```
+    CJKmainfont: SourceHanSerifSC-Medium
+    monofont: JetBrainsMono-Medium
+    ```
+
+对比
+![](./img/compare.png)
 
 # 生成PDF
 
@@ -118,7 +138,8 @@ history:
 - footer-left: 左页脚
 - footer-right: 右页脚
 -  CJKmainfont: 主要中文字体
--  mainfont: 主要字体
+-  mainfont: 主要英文字体
+-  monofont: 主要代码字体
 -  lot: 是否创建表格目录
 -  lof: 是否创建图片目录
 
@@ -129,3 +150,7 @@ history:
 ```bash
 pandoc --listings --pdf-engine=xelatex --template=mppl.latex README.md -o README.pdf
 ```
+
+# 参考
+
+模板主要修改自[eppdev/eppdev-pandoc-template](https://github.com/eppdev/eppdev-pandoc-template)

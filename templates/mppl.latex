@@ -26,6 +26,9 @@
 % 主要英文字体
 \newcommand*{\themainfont}{$if(mainfont)$$mainfont$$else$Microsoft YaHei$endif$}
 
+% Mono字体，用于代码块
+\newcommand*{\themonofont}{$if(monofont)$$monofont$$else$Consolas$endif$}
+
 % logo
 \newcommand*{\thelogo}{$if(logo-url)$$logo-url$$else$logo.png$endif$}
 
@@ -101,6 +104,7 @@ $endif$
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
   \setmainfont{\themainfont}
+  \setmonofont{\themonofont}
   \ifxetex
     \usepackage{xeCJK}
     \setCJKmainfont{\thecjkmainfont}
@@ -130,7 +134,7 @@ $endif$
 \definecolor{default-linkcolor}{HTML}{100000}
 \definecolor{default-filecolor}{HTML}{100000}
 \definecolor{default-citecolor}{HTML}{101010}
-\definecolor{default-urlcolor}{HTML}{4077C0}
+\definecolor{default-urlcolor}{HTML}{005bbb}
 \usepackage{hyperref}
 \hypersetup{
   pdftitle={$title$},
@@ -222,33 +226,33 @@ $endif$
 \definecolor{listing-comment}{HTML}{8E8E8E}
 \definecolor{listing-javadoc-comment}{HTML}{006CA9}
 
-% java 颜色
+% 代码块listing设置
 \lstdefinestyle{mppl-listing-style}{
-  language         = java,
-  numbers          = left,
-  xleftmargin      = 2.7em,
-  framexleftmargin = 2.5em,
-  backgroundcolor  = \color{listing-background},
+  language         = java,              % 语言类型
+  numbers          = left,              % 行号显示位置
+  xleftmargin      = 2.7em,             % 左边距
+  framexleftmargin = 2.5em,             % 左边框边距
+  backgroundcolor  = \color{listing-background},        % 背景色
   basicstyle       = \color{listing-text-color}\small\ttfamily{}\linespread{1.15}, % print whole listing small
-  breaklines       = true,
-  frame            = single,
-  framesep         = 0.19em,
-  rulecolor        = \color{listing-rule},
-  frameround       = ffff,
-  tabsize          = 4,
-  numberstyle      = \color{listing-numbers},
-  aboveskip        = 1.0em,
-  belowskip        = 0.1em,
-  abovecaptionskip = 0em,
-  belowcaptionskip = 1.0em,
-  keywordstyle     = \color{listing-keyword}\bfseries,
-  classoffset      = 0,
-  sensitive        = true,
-  identifierstyle  = \color{listing-identifier},
-  commentstyle     = \color{listing-comment},
-  morecomment      = [s][\color{listing-javadoc-comment}]{/**}{*/},
+  breaklines       = true,              % 代码超出边界换行
+  frame            = single,            % 代码块边框是单线条
+  framesep         = 0.19em,            % 边框与代码间距
+  rulecolor        = \color{listing-rule},        % 边框颜色
+  frameround       = tttt,              % 边框圆角
+  tabsize          = 4,                 % tab缩进
+  numberstyle      = \color{listing-numbers},     % 行号颜色
+  aboveskip        = 1.0em,             % 上边距
+  belowskip        = 0.1em,             % 下边距
+  abovecaptionskip = 0em,               % 上标题边距
+  belowcaptionskip = 1.0em,             % 下标颜边距
+  keywordstyle     = \color{listing-keyword}\bfseries,  % 关键字颜色
+  classoffset      = 0,                 % 类名偏移量
+  sensitive        = true,              % 是否区分大小写
+  identifierstyle  = \color{listing-identifier},   % 变量颜色
+  commentstyle     = \color{listing-comment},      % 注释颜色
+  morecomment      = [s][\color{listing-javadoc-comment}]{/**}{*/},     
   stringstyle      = \color{listing-string},
-  showstringspaces = false,
+  showstringspaces = false,             % 是否显示字符串空格
   escapeinside     = {/*@}{@*/}, % Allow LaTeX inside these special comments
   literate         =
   {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
@@ -264,8 +268,8 @@ $endif$
   {€}{{\EUR}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
   {…}{{\ldots}}1 {≥}{{>=}}1 {≤}{{<=}}1 {„}{{\glqq}}1 {“}{{\grqq}}1
-  {”}{{''}}1
-}
+  {”}{{''}}1    
+}       
 \lstset{style=mppl-listing-style}
 
 \lstdefinelanguage{XML}{

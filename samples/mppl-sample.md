@@ -7,13 +7,16 @@ output:
 title: "Markdown语法简明教程"
 version: V0.1
 author: "Dominic"
-date: "2019-08"
+date: "2022-08"
 company: COMPANYNAME
 file-code: COMPANY-DEPARTMENT-00000000
 logo: true
 logo-url: ../img/Markdown-mark.png
 lot: true
 lof: true
+CJKmainfont: Microsoft YaHei
+mainfont: Microsoft YaHei
+monofont: Consolas
 history:
   - version: V0.1
     author: Dominic
