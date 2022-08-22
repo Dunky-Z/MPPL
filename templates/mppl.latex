@@ -528,16 +528,43 @@ $if(history)$
 \endhead
 % 表头结束
 
+% 表头
+\toprule
+\begin{minipage}[b]{0.07\columnwidth}\centering
+	\textbf{序号}\strut
+\end{minipage} & \begin{minipage}[b]{0.1\columnwidth}\centering
+	\textbf{修订人}\strut
+\end{minipage} & \begin{minipage}[b]{0.3\columnwidth}\centering
+	\textbf{修订时间}\strut
+\end{minipage} & \begin{minipage}[b]{0.43\columnwidth}\centering
+	\textbf{修订记录}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.07\columnwidth}\centering
+	\textbf{序号}\strut
+\end{minipage} & \begin{minipage}[b]{0.1\columnwidth}\centering
+	\textbf{修订人}\strut
+\end{minipage} & \begin{minipage}[b]{0.3\columnwidth}\centering
+	\textbf{修订时间}\strut
+\end{minipage} & \begin{minipage}[b]{0.43\columnwidth}\centering
+	\textbf{修订记录}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+% 表头结束
+
 % 表格正文
 $for(history)$
 
-\begin{minipage}[t]{0.09\columnwidth}\centering
+\begin{minipage}[t]{0.07\columnwidth}\centering
 $history.version$\strut
-\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+\end{minipage} & \begin{minipage}[t]{0.1\columnwidth}\centering
 $history.author$\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+\end{minipage} & \begin{minipage}[t]{0.3\columnwidth}\centering
 $history.date$\strut
-\end{minipage} & \begin{minipage}[t]{0.54\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{0.43\columnwidth}\raggedright
 
 $for(history.desc)$
 

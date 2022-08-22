@@ -2,7 +2,7 @@
 output:
   pdf_document:
     latex_engine: xelatex
-    pandoc_args: [--template=mppl.latex,--listings]
+    pandoc_args: [--template=mppl.latex,--listings,-f,markdown-auto_identifiers]
 
 title: "Markdown语法简明教程"
 version: V0.1
@@ -20,7 +20,7 @@ monofont: Consolas
 history:
   - version: V0.1
     author: Dominic
-    date: 2022-08-20
+    date: 2022年08月20日
     desc: 创建示例文档
 ---
 
