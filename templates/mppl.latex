@@ -348,7 +348,9 @@ $endif$
 % --------------------------------------------
 % 1.10 表格样式设置
 % --------------------------------------------
-\usepackage{longtable}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+
 \definecolor{table-row-color}{HTML}{EFEFEF}
 \definecolor{table-rule-color}{HTML}{999999}
 
