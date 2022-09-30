@@ -105,6 +105,7 @@ LaTex工具，在windows下建议安装miktex，Linux和MacOS下建议安装texl
     ```
 
 对比
+
 ![](./img/compare.png)
 
 # 生成PDF
