@@ -60,7 +60,7 @@ LaTex工具，在windows下建议安装miktex，Linux和MacOS下建议安装texl
 为保证生成的pdf格式（自动插入封面、目录页、页眉页脚等信息），在本地环境中安装模板，具体步骤是：
 
 - 下载本仓库
-- 将`template/mppl.latex`拷贝到`*/pandoc/templates`目录下
+- 将`template/mppl.tex`拷贝到`*/pandoc/templates`目录下
     - Window下：`C:/Users/USERNAME/AppData/Roaming/pandoc/templates`，如果`Roaming`没有`pandoc`目录，请手动创建
   - Linux/FreeBSD/MacOS：`~/.pandoc/templates/`
 
@@ -149,7 +149,7 @@ history:
 ## 生成文件
 
 ```bash
-pandoc --listings --pdf-engine=xelatex --template=mppl.latex README.md -o README.pdf
+pandoc --listings --pdf-engine=xelatex --template=mppl.tex README.md -o README.pdf
 ```
 
 # 参考
