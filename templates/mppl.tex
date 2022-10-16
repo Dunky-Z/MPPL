@@ -73,6 +73,7 @@ $endif$
   a4paper
 ]{scrartcl}
 
+\usepackage{latexsym,bm,amssymb} 
 \usepackage{longtable,booktabs}
 \usepackage{framed}
 \usepackage{listings}
@@ -122,7 +123,9 @@ $endif$
 \setlength{\parindent}{\udfparindent}
 
 % 页边距
-\usepackage[margin=2.5cm,includehead=true,includefoot=true,centering]{geometry}
+%\usepackage[margin=2.5cm,includehead=true,includefoot=true,centering]{geometry}
+\usepackage{geometry}
+\geometry{a4paper,left=1.5cm,right=1.5cm,top=2.5cm,bottom=2.5cm,includehead=true,includefoot=true,centering}
 
 % -------------------------------------------
 % 1.3 颜色配置
@@ -162,7 +165,7 @@ $endif$
 % ------------------------------------------
 
 % 目录层级
-\setcounter{secnumdepth}{5}
+\setcounter{secnumdepth}{6}
 
 % paragraph和subparagraph当作目录来处理
 \ifx\paragraph\undefined\else
@@ -227,15 +230,16 @@ $endif$
 \definecolor{listing-rule}{HTML}{B3B2B3}
 \definecolor{listing-numbers}{HTML}{B3B2B3}
 \definecolor{listing-text-color}{HTML}{000000}
-\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword}{HTML}{005bbb}
+%\definecolor{listing-identifier}{HTML}{ba6236}
 \definecolor{listing-identifier}{HTML}{435489}
-\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-string}{HTML}{7d9726}
 \definecolor{listing-comment}{HTML}{8E8E8E}
 \definecolor{listing-javadoc-comment}{HTML}{006CA9}
 
 % 代码块listing设置
 \lstdefinestyle{mppl-listing-style}{
-  language         = java,              % 语言类型
+  language         = c,              % 语言类型
   numbers          = left,              % 行号显示位置
   xleftmargin      = 2.7em,             % 左边距
   framexleftmargin = 2.5em,             % 左边框边距
@@ -314,13 +318,13 @@ $endif$
 \usepackage[export]{adjustbox}
 
 
-% 设置图片不要缩进
+% 设置图片居中，图片不要缩进
 \ifx\includegraphics\undefined\else
 \let\oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[1]{
         \vskip 8pt
         \setlength{\parindent}{0em}
-        \oldincludegraphics{#1}
+        \oldincludegraphics[center]{#1}
         \setlength{\parindent}{\udfparindent}
 	\vskip 2pt
         }
@@ -357,6 +361,7 @@ $endif$
 % --------------------------------------------
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
+\usepackage{xtab}
 
 \definecolor{table-row-color}{HTML}{EFEFEF}
 \definecolor{table-rule-color}{HTML}{999999}
@@ -424,9 +429,13 @@ $endif$
         %------------------------------------------------
         %       文档编号
         %------------------------------------------------
-	$if(file-code)$
+	$if(department)$
         \begin{flushleft}
-		\textsf{文档编号：$file-code$}
+		\textsf{$department$}
+	\end{flushleft}
+        $else$
+        \begin{flushleft}
+		\textsf{Eco-Firmware Dev}
 	\end{flushleft}
         $endif$
 
@@ -509,33 +518,6 @@ $if(history)$
 
 % 表格开始
 \begin{longtable}[]{@{}cccl@{}}
-
-% 表头
-\toprule
-\begin{minipage}[b]{0.09\columnwidth}\centering
-	\textbf{序号}\strut
-\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
-	\textbf{修订人}\strut
-\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
-	\textbf{修订时间}\strut
-\end{minipage} & \begin{minipage}[b]{0.54\columnwidth}\centering
-	\textbf{修订记录}\strut
-\end{minipage}\tabularnewline
-\midrule
-\endfirsthead
-\toprule
-\begin{minipage}[b]{0.09\columnwidth}\centering
-	\textbf{序号}\strut
-\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
-	\textbf{修订人}\strut
-\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
-	\textbf{修订时间}\strut
-\end{minipage} & \begin{minipage}[b]{0.54\columnwidth}\centering
-	\textbf{修订记录}\strut
-\end{minipage}\tabularnewline
-\midrule
-\endhead
-% 表头结束
 
 % 表头
 \toprule
