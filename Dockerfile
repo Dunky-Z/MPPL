@@ -24,9 +24,9 @@ RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula selec
 COPY fonts/* /usr/share/fonts/
 COPY templates/* /templates/
 
-RUN mkfontscale \
-    mkfontdir \
-    fc-cache \
+RUN mkfontscale && \
+    mkfontdir && \
+    fc-cache && \
     fc-list
 
 ENTRYPOINT [ "pandoc", "-f", "markdown-auto_identifiers",  "--listings", "--pdf-engine=xelatex", "--template=/templates/mppl.tex" ]
