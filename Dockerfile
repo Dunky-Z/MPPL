@@ -22,11 +22,11 @@ RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula selec
     && rm -rf /var/lib/apt/lists/*
 
 COPY fonts/* /usr/share/fonts/
-COPY templates/* /mppl/templates/
+COPY templates/* /templates/
 
 RUN mkfontscale \
     mkfontdir \
     fc-cache \
     fc-list
 
-ENTRYPOINT [ "pandoc", "-f", "markdown-auto_identifiers",  "--listings", "--pdf-engine=xelatex", "--template=/mppl/templates/mppl.tex" ]
+ENTRYPOINT [ "pandoc", "-f", "markdown-auto_identifiers",  "--listings", "--pdf-engine=xelatex", "--template=/templates/mppl.tex" ]
