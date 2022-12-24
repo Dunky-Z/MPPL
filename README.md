@@ -19,7 +19,7 @@ history:
 
 # MPPL
 
-Markdown to PDF with Pandoc via \LaTeX{}.
+**Markdown** to PDF with Pandoc via \LaTeX{}.
 
 # 基础环境配置
 

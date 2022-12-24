@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+
+name: "mppl Images"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+
+jobs:
+  Build_Image:
+      uses: ./.github/workflows/build-image.yaml
+      with:
+        image_name: "mppl"
