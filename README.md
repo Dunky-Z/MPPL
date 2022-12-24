@@ -1,22 +1,3 @@
----
-title: "MPPL"
-version: "0.1"
-subtitle: "Markdown to PDF with Pandoc via LaTeX"
-date: "2022-08"
-author: "Dominic"
-company: COMPANYNAME
-file-code: COMPANY-DEPARTMENT-00000000
-logo: true
-logo-url: ./img/logo.png
-lot: false
-lof: false
-history:
-  - version: V0.1
-    author: Dominic
-    date: 2022-08-19
-    desc: 创建文档
----
-
 # MPPL
 
 MPPL(Markdown to PDF with Pandoc via \LaTeX{}) 提供了一种将 Markdown 转换为 PDF 的解决方案。你可以使用 Docker 镜像免去安装依赖，也可以自行按照以下文档部署，将其作为 Pandoc 的一个模板使用。
