@@ -29,20 +29,20 @@ Pandoc 是由 John MacFarlane 开发的标记语言转换工具，可实现不�
 - Linux/FreeBSD下的安装：
   - Pandoc 已经包含在大部分 Linux 发行版的官方仓库中，直接使用诸如`apt/dnf/yum/pacman`之类的安装工具直接安装即可
   
-- MacOS 下的安装：
+- macOS 下的安装：
   - `brew install pandoc`
 
 > 详细的安装说明参见：[官方安装文档](https://pandoc.org/installing.html)
 
-## LaTex 的安装
+## LaTeX 的安装
 
-LaTex 工具，在 windows 下建议安装 miktex，Linux 和 MacOS 下建议安装 texlive
+LaTeX 工具，在 Windows 下建议安装 miktex，Linux 和 macOS 下建议安装 texlive
 
 - Windows 下的安装：
   - [参考该文章](https://zhuanlan.zhihu.com/p/41855480)下载完整 texlive，注意安装后需要再安装 cjk，cjk-fonts 等相关 package
 - Linux/FreeBSD下的安装：
   - 使用 `apt/dnf/yum/pacman/pkg` 等安装工具安装 texlive、texlive-latex 等相关软件包
-- MacOS 下的安装：
+- macOS 下的安装：
   - 使用 HomeBrew 安装 texlive 即可
 
 ## 字体安装
@@ -83,7 +83,7 @@ $ mkfontscale &&  mkfontdir &&  fc-cache && fc-list
   - Window 下：`C:/Users/USERNAME/AppData/Roaming/pandoc/templates`，如果`Roaming`没有`pandoc`目录，请手动创建
   - Linux/FreeBSD/MacOS：`~/.pandoc/templates/`
 
-## 配置 LaTex 模板
+## 配置 LaTeX 模板
 
 模板定制主要修改模板最前面的**模板基础配置**相关内容，主要可修改的包括：
 
@@ -100,7 +100,7 @@ $ mkfontscale &&  mkfontdir &&  fc-cache && fc-list
 
 ## PDF 文件指定 metadata 信息
 
-在每个 markdown 最前面增加以下主要 metadata 信息，metadata 内容开始行和结束行为三个“-”，示例如下：
+在每个 Markdown 最前面增加以下主要 metadata 信息，metadata 内容开始行和结束行为三个“-”，示例如下：
 
 ```yml
 ---
@@ -122,19 +122,25 @@ history:
 ---
 ```
 
-其他可选配置项目如下：
+可选配置项目如下：
 
-- header-left: 左页眉
-- header-right: 右页眉
-- footer-left: 左页脚
-- footer-right: 右页脚
-- CJKmainfont: 主要中文字体
+- lof: 是否创建图片目录
+- lot: 是否创建表格目录
+- date: 是否显示日期
+- company: 是否显示公司名
+- version: 是否显示版本号
 - mainfont: 主要英文字体
 - monofont: 主要代码字体
-- lot: 是否创建表格目录
-- lof: 是否创建图片目录
+- CJKmainfont: 主要中文字体
+- file-code: 是否显示文件编号
+- department: 是否显示部门名
+- footer-left: 左页脚
+- header-left: 左页眉
+- header-right: 右页眉
+- footer-right: 右页脚
 
-> 可选配置项中，建议除了 subtitle 外，全部在模板中定制，不在 markdown 文件中定制
+> 1. 可选配置项中，建议除了 subtitle 外，全部在模板中定制，不在 Markdown 文件中定制
+> 2. 可选配置项中，如果不需要显示填`department: false`，如果需要显示，显示的内容即填写的内容如：`department: 后端开发部`
 
 ## 生成文件
 

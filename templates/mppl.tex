@@ -200,9 +200,13 @@ $endif$
 \fancypagestyle{mppl-header-footer}{
   \fancyhead{}
   \fancyfoot{}
+  $if(header-left)$    
   \lhead[\headerright]{\headerleft}
+  $endif$
   \chead[]{}
+  $if(header-right)$    
   \rhead[\headerleft]{\headerright}
+  $endif$
   \lfoot[\footerright]{\footerleft}
   \cfoot[]{}
   \rfoot[\footerleft]{\footerright}
@@ -431,13 +435,9 @@ $endif$
         %------------------------------------------------
 	$if(department)$
         \begin{flushleft}
-		\textsf{$department$}
-	\end{flushleft}
-        $else$
-        \begin{flushleft}
-		\textsf{Eco-Firmware Dev}
-	\end{flushleft}
-        $endif$
+		    \textsf{$department$}
+	    \end{flushleft}
+    $endif$
 
         %------------------------------------------------
         %       标题
@@ -452,8 +452,9 @@ $endif$
 	{\LARGE \textbf{$title$}}          % 标题
 
 	\vspace{0.5\baselineskip}
-
+    $if(version)$    
 	{\Large \textbf{$version$}}        % 版本号
+    $endif$
 
         \vspace{0.75\baselineskip}         % 标题下方的空白
 
@@ -478,9 +479,9 @@ $endif$
 
 
         \vspace{0.5\baselineskip} % 作者前的空行
-
+    $if(author)$
 	{\scshape\Large \textsf{$for(author)$$author$$sep$ \\ $endfor$}} % 作者
-
+    $endif$
         \vspace{0.5\baselineskip} % 空行
 
         \vfill % 下方填充
@@ -495,12 +496,15 @@ $endif$
 	$endif$
 
         \vspace{0.5\baselineskip} % logo下的空白
-
+    $if(company)$    
 	{\large \textbf{$if(company)$$company$$else$\company$endif$}} % 公司
+    $endif$
 
 	\vspace{0.5\baselineskip}
 
+    $if(date)$
 	\textsf{$date$} % 日期
+    $endif$
 
 \end{titlepage}
 \restoregeometry
