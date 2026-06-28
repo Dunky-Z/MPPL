@@ -273,3 +273,18 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+# Mermaid 渲染缓存与运行时配置文件（保留 config/ 目录下的源配置）
+.mppl-mermaid-cache/
+samples/.mppl-mermaid-cache/
+.mermaid-config.json
+.mermaid.css
+.puppeteer.json
+!config/.mermaid-config.json
+!config/.mermaid.css
+!config/.puppeteer.json
+samples/*.pdf
+samples/mermaid-filter.err
+
+# DockerHub 本地配置（含用户名）
+scripts/dockerhub.env

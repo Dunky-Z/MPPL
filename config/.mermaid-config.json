@@ -1,0 +1,18 @@
+{
+  "theme": "default",
+  "fontFamily": "Source Han Serif SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif",
+  "themeVariables": {
+    "fontFamily": "Source Han Serif SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif",
+    "fontSize": "16px"
+  },
+  "flowchart": {
+    "htmlLabels": true,
+    "useMaxWidth": true
+  },
+  "sequence": {
+    "useMaxWidth": true
+  },
+  "gantt": {
+    "useMaxWidth": true
+  }
+}

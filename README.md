@@ -10,7 +10,64 @@ docker pull ghcr.io/dunky-z/mppl/mppl:latest
 # 进入文档目录
 cd MPPL/samples
 # 转换文档
-$ docker run --rm -v $(pwd)/:/mppl mppl -o mppl-sample.pdf  mppl-sample.md        
+docker run --rm -v $(pwd)/:/mppl mppl -o mppl-sample.pdf mppl-sample.md
+# 转换含 Mermaid 图表的文档
+docker run --rm -v $(pwd)/:/mppl mppl -o mppl-mermaid-sample.pdf mppl-mermaid-sample.md
+```
+
+Windows Git Bash 下挂载卷需使用双斜杠路径，例如：
+
+```bash
+docker run --rm -v "//c/Develop/MPPL/samples:/mppl" mppl -o mppl-mermaid-sample.pdf mppl-mermaid-sample.md
+```
+
+## 构建并发布 Docker 镜像
+
+版本号记录在仓库根目录 `VERSION` 文件（当前 **2.0.0**，V2.0 起支持 Mermaid 图表导出）。
+
+### 一键构建并发布
+
+```bash
+# 1. 配置 DockerHub 用户名（首次）
+cp scripts/dockerhub.env.example scripts/dockerhub.env
+# 编辑 scripts/dockerhub.env，设置 DOCKERHUB_USERNAME
+
+# 2. 登录 DockerHub
+docker login
+
+# 3. 构建并推送（读取 VERSION 作为镜像 tag，同时推送 latest）
+./scripts/docker-build-push.sh
+```
+
+常用选项：
+
+```bash
+./scripts/docker-build-push.sh --build-only    # 仅构建，不推送
+./scripts/docker-build-push.sh --no-cache      # 禁用构建缓存
+./scripts/docker-build-push.sh --version 2.0.1 # 临时指定版本 tag
+```
+
+发布新版本前，先更新根目录 `VERSION` 文件中的 semver 版本号。
+
+### 手动构建与测试
+
+```bash
+docker build -t YOUR_DOCKERHUB_USER/mppl:latest .
+
+# 测试基础 Markdown 转换
+docker run --rm -v $(pwd)/samples:/mppl YOUR_DOCKERHUB_USER/mppl:latest \
+  -o mppl-sample.pdf mppl-sample.md
+
+# 测试 Mermaid 图表转换（含中文标签）
+docker run --rm -v $(pwd)/samples:/mppl YOUR_DOCKERHUB_USER/mppl:latest \
+  -o mppl-mermaid-sample.pdf mppl-mermaid-sample.md
+```
+
+Windows Git Bash 下测试时挂载卷需使用双斜杠路径：
+
+```bash
+docker run --rm -v "//c/Develop/MPPL/samples:/mppl" YOUR_DOCKERHUB_USER/mppl:latest \
+  -o mppl-mermaid-sample.pdf mppl-mermaid-sample.md
 ```
 
 # 自行部署
@@ -147,6 +204,67 @@ history:
 ```bash
 cd samples
 pandoc --listings --pdf-engine=xelatex --template=mppl.tex mppl-sample.md -o mppl-sample.pdf
+```
+
+## Mermaid 图表支持
+
+MPPL 通过 [mermaid-filter](https://github.com/raghur/mermaid-filter) 将 Markdown 中的 Mermaid 代码块渲染为 PNG 图片后嵌入 PDF。Docker 镜像已内置全部依赖与中文字体配置。
+
+### Markdown 写法
+
+````markdown
+```mermaid
+graph TD
+    A[开始] --> B[处理中文标签]
+    B --> C[结束]
+```
+````
+
+完整示例见 `samples/mppl-mermaid-sample.md`。
+
+### 渲染缓存
+
+转换时会在工作目录下生成 `.mppl-mermaid-cache/` 目录，缓存已渲染的 PNG 图片。相同 Mermaid 源码再次转换时可直接复用，无需重复渲染。
+
+可通过环境变量调整行为：
+
+| 环境变量 | 默认值 | 说明 |
+|----------|--------|------|
+| `MERMAID_FILTER_LOC` | `.mppl-mermaid-cache` | 缓存目录路径 |
+| `MERMAID_FILTER_FORMAT` | `png` | 输出格式（`png` 或 `svg`） |
+| `MERMAID_FILTER_WIDTH` | `1400` | 渲染宽度（像素） |
+| `MERMAID_FILTER_SCALE` | `2` | 缩放倍率（Puppeteer deviceScaleFactor，2 表示 2 倍像素密度） |
+| `MERMAID_FILTER_BACKGROUND` | `white` | 背景色 |
+
+修改 `WIDTH` 或 `SCALE` 后需删除 `.mppl-mermaid-cache/` 缓存目录，否则会继续使用旧分辨率的 PNG。
+
+### 中文字体
+
+Mermaid 图表中的中文依赖系统已安装字体。Docker 镜像内已配置：
+
+- 项目内置 **Source Han Serif SC**（与 MPPL LaTeX 模板默认 CJK 字体一致）
+- 系统字体 **Noto Sans CJK**、**文泉驿微米黑** 作为回退
+
+字体配置位于 `config/.mermaid-config.json` 与 `config/.mermaid.css`，容器启动时会自动复制到工作目录。
+
+### 本地环境使用 Mermaid
+
+除 Docker 外，也可在本地安装 filter 后使用：
+
+```bash
+npm install -g @xuanphuc/mermaid-filter
+```
+
+将 `config/` 目录下的 `.mermaid-config.json`、`.mermaid.css`、`.puppeteer.json` 复制到文档工作目录，然后：
+
+```bash
+cd samples
+export MERMAID_FILTER_LOC=.mppl-mermaid-cache
+mkdir -p .mppl-mermaid-cache
+pandoc --listings --pdf-engine=xelatex --template=mppl.tex \
+  --filter mermaid-filter \
+  -f markdown-auto_identifiers \
+  mppl-mermaid-sample.md -o mppl-mermaid-sample.pdf
 ```
 
 # 参考

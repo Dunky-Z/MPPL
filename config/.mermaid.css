@@ -1,0 +1,19 @@
+/* Mermaid 图表中文字体：与 MPPL 模板默认 CJK 字体 Source Han Serif SC 保持一致 */
+.mermaid,
+.mermaid svg,
+.mermaid .nodeLabel,
+.mermaid .edgeLabel,
+.mermaid .label,
+.mermaid .cluster-label,
+.mermaid .messageText,
+.mermaid .actor,
+.mermaid .noteText,
+.mermaid .taskText,
+.mermaid .sectionTitle,
+.mermaid .titleText,
+.mermaid span,
+.mermaid p,
+.mermaid text,
+.mermaid tspan {
+  font-family: "Source Han Serif SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif !important;
+}
