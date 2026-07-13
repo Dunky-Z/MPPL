@@ -29,5 +29,6 @@ exec pandoc \
   --listings \
   --pdf-engine=xelatex \
   --template=/templates/mppl.tex \
+  --lua-filter=/etc/mppl/mermaid/mppl-meta.lua \
   --filter mermaid-filter \
   "$@"

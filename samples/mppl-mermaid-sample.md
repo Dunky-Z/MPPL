@@ -8,6 +8,8 @@ file-code: MPPL-SAMPLE-00000001
 logo: false
 lot: false
 lof: true
+chapter-level: 2
+section-numbering: true
 history:
   - version: V1.0
     author: Dominic

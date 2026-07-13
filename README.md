@@ -171,6 +171,8 @@ logo: true
 logo-url: ./img/Markdown-mark.png
 lot: true
 lof: true
+chapter-level: 2
+section-numbering: true
 history:
   - version: V0.1
     author: Dominic
@@ -195,15 +197,31 @@ history:
 - header-left: 左页眉
 - header-right: 右页眉
 - footer-right: 右页脚
+- chapter-level: 作为章节编号的 Markdown 标题级别（1–6），默认 `1`；常见写法为 `2`（一级标题作文章名，二级标题作章节）
+- section-numbering: 是否自动为章节编号，`true` / `false`，默认 `true`；设为 `false` 时保留 Markdown 标题中的手工序号
 
 > 1. 可选配置项中，建议除了 subtitle 外，全部在模板中定制，不在 Markdown 文件中定制
 > 2. 可选配置项中，如果不需要显示填`department: false`，如果需要显示，显示的内容即填写的内容如：`department: 后端开发部`
+
+章节编号示例：
+
+```yml
+# 二级标题（##）作为章节，并自动编号（1、1.1、1.2 …）
+chapter-level: 2
+section-numbering: true
+
+# 标题中已手写「第一章」「1.1」等序号，关闭自动编号
+chapter-level: 2
+section-numbering: false
+```
 
 ## 生成文件
 
 ```bash
 cd samples
-pandoc --listings --pdf-engine=xelatex --template=mppl.tex mppl-sample.md -o mppl-sample.pdf
+pandoc --listings --pdf-engine=xelatex --template=mppl.tex \
+  --lua-filter=../config/mppl-meta.lua \
+  mppl-sample.md -o mppl-sample.pdf
 ```
 
 ## Mermaid 图表支持
@@ -262,6 +280,7 @@ cd samples
 export MERMAID_FILTER_LOC=.mppl-mermaid-cache
 mkdir -p .mppl-mermaid-cache
 pandoc --listings --pdf-engine=xelatex --template=mppl.tex \
+  --lua-filter=../config/mppl-meta.lua \
   --filter mermaid-filter \
   -f markdown-auto_identifiers \
   mppl-mermaid-sample.md -o mppl-mermaid-sample.pdf

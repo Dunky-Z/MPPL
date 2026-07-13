@@ -14,6 +14,8 @@ logo: true
 logo-url: ./img/Markdown-mark.png
 lot: true
 lof: true
+chapter-level: 2
+section-numbering: true
 history:
   - version: V0.1
     author: Dominic

@@ -164,8 +164,12 @@ $endif$
 % 1.4 目录设置
 % ------------------------------------------
 
-% 目录层级
+% 目录层级（section-numbering: false 时关闭自动编号）
+$if(disable-section-numbering)$
+\setcounter{secnumdepth}{-\maxdimen}
+$else$
 \setcounter{secnumdepth}{6}
+$endif$
 
 % paragraph和subparagraph当作目录来处理
 \ifx\paragraph\undefined\else
