@@ -23,7 +23,7 @@ docker run --rm -v "//c/Develop/MPPL/samples:/mppl" mppl -o mppl-mermaid-sample.
 
 ## 构建并发布 Docker 镜像
 
-版本号记录在仓库根目录 `VERSION` 文件（当前 **2.0.0**，V2.0 起支持 Mermaid 图表导出）。
+版本号记录在仓库根目录 `VERSION` 文件（当前 **2.1.0**，含 Mermaid 导出与章节编号配置）。
 
 ### 一键构建并发布
 
