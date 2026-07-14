@@ -199,6 +199,7 @@ history:
 - footer-right: 右页脚
 - chapter-level: 作为章节编号的 Markdown 标题级别（1–6），默认 `1`；常见写法为 `2`（一级标题作文章名，二级标题作章节）
 - section-numbering: 是否自动为章节编号，`true` / `false`，默认 `true`；设为 `false` 时保留 Markdown 标题中的手工序号
+- table-col-weights: 可选，覆盖自动列宽估算的相对权重，如 `[1, 2, 2, 3, 2, 1]`（按列顺序，数值越大列越宽）
 
 > 1. 可选配置项中，建议除了 subtitle 外，全部在模板中定制，不在 Markdown 文件中定制
 > 2. 可选配置项中，如果不需要显示填`department: false`，如果需要显示，显示的内容即填写的内容如：`department: 后端开发部`
@@ -215,12 +216,22 @@ chapter-level: 2
 section-numbering: false
 ```
 
+## 表格导出策略
+
+PDF 中的 Markdown 表格由 `config/mppl-table.lua` 自动处理，无需手改列宽标记：
+
+- **内容感知列宽**：按各列最长单元格估算相对宽度（短列收窄、描述列加宽），并强制在页面宽度内折行
+- **长标识符断行**：在 `_`、`-`、`.`、`/` 与驼峰边界插入零宽断点，避免 `Require_MacroRepairCode` 一类单词截断叠字
+- **拥挤表缩小字号**：列数不少于 5，或单元格平均内容偏长时，该表使用 `\footnotesize`
+- **可选覆盖**：`table-col-weights: [1, 2, 3, 2]` 按相对权重分配列宽
+
 ## 生成文件
 
 ```bash
 cd samples
 pandoc --listings --pdf-engine=xelatex --template=mppl.tex \
   --lua-filter=../config/mppl-meta.lua \
+  --lua-filter=../config/mppl-table.lua \
   mppl-sample.md -o mppl-sample.pdf
 ```
 
@@ -281,6 +292,7 @@ export MERMAID_FILTER_LOC=.mppl-mermaid-cache
 mkdir -p .mppl-mermaid-cache
 pandoc --listings --pdf-engine=xelatex --template=mppl.tex \
   --lua-filter=../config/mppl-meta.lua \
+  --lua-filter=../config/mppl-table.lua \
   --filter mermaid-filter \
   -f markdown-auto_identifiers \
   mppl-mermaid-sample.md -o mppl-mermaid-sample.pdf

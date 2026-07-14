@@ -370,6 +370,8 @@ $endif$
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 \usepackage{xtab}
+% 允许下划线处断行（标识符如 Require_MacroRepairCode）
+\usepackage[strings]{underscore}
 
 \definecolor{table-row-color}{HTML}{EFEFEF}
 \definecolor{table-rule-color}{HTML}{999999}
@@ -379,12 +381,23 @@ $endif$
 \setlength\heavyrulewidth{0.3ex}      % thickness of \toprule, \bottomrule
 \renewcommand{\arraystretch}{1.3}     % spacing (padding)
 
+% longtable 贴齐正文左右边界，避免宽表偏移溢出
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+
+% 表格单元格内允许更积极的换行，减少长单词/CJK 溢出
+\newcommand{\mppltablesloppy}{%
+  \sloppy
+  \setlength{\emergencystretch}{2em}%
+}
+
 % Reset rownum counter so that each table
 % starts with the same row colors.
 % https://tex.stackexchange.com/questions/170637/restarting-rowcolors
 \let\oldlongtable\longtable
 \let\endoldlongtable\endlongtable
 \renewenvironment{longtable}{
+\mppltablesloppy
 \rowcolors{3}{}{table-row-color!100}  % row color
 \oldlongtable} {
 \endoldlongtable
